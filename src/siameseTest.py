@@ -48,15 +48,6 @@ def calculateTestEmbeddings():
 
 if __name__ == '__main__':
     graph = load_graph('src/20180402-114759/20180402-114759.pb')
-    # listOfOperations = []
-    # for op in graph.get_operations():
-    #     listOfOperations.append(op.name)
-        
-    # print listOfOperations[0:10]
-    # print listOfOperations[-1]
-    # imageList = []
-    # for imagePath in glob.glob('data/library/train/test2.jpg'):
-    #     images.append(imagePath)
     faceList = []
     for imagePath in glob.glob('data/library/test2/*'):
         # loading cropped,RGBscale,aligned (160,160)sized faces as reqd by FaceNet
