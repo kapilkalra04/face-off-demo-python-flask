@@ -60,6 +60,22 @@ def detect(model,weights,image,isPath):
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")	# extracting integral values
 			# adding area details along with co-ordinate values
+			if(startX < 0):
+				startX = 0
+			if(startY < 0):
+				startY = 0
+			if(endX < 0):
+				endX = 0
+			if(endY < 0):
+				endY = 0
+			if(startX > w):
+				startX = w
+			if(startY > h):
+				startY = h
+			if(endX > w):
+				endX = w
+			if(endY > h):
+				endY = h
 			faces[i].extend([startX,endX,startY,endY,((endX-startX)*(endY-startY))])
 
 			# plotting the face rectangle	
@@ -89,7 +105,7 @@ def detect(model,weights,image,isPath):
 if __name__ == '__main__':
 	model = "src/deploy.prototxt.txt"							# model-definition
 	weights = "src/res10_300x300_ssd_iter_140000.caffemodel"	# pre-trained weights
-	image = "data/images/demo1.JPG"								# image name reqd. images are loaded as 3D matrix - (h x w x c)	
+	image = "data/library/test2/test.jpeg"								# image name reqd. images are loaded as 3D matrix - (h x w x c)	
 	isPath = True
 	print ("Hello")
 	plt.subplot(2,1,1)

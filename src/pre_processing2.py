@@ -72,7 +72,7 @@ def getFaceColor(imagePath):
 if __name__ == '__main__':
 	
 	plt.subplot(2,2,1)
-	colorImage, mainFaceColor, mainFaceGray, mainFaceBox = detectMainFace('data/images/test9.JPG',True)
+	colorImage, mainFaceColor, mainFaceGray, mainFaceBox = detectMainFace('data/library/test2/test.jpeg',True)
 	plt.imshow(colorImage)
 
 	plt.subplot(2,2,2)

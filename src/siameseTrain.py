@@ -46,7 +46,7 @@ def calculateTrainEmbeddings():
         # save embedding values 
         np.save('src/empEmbeddings',values)
         nofEmp = len(np.load('src/empEmbeddings.npy').tolist())
-        return json.dumps({'No of trusted faces present inside library= ': nofEmp})
+        print ('No of trusted faces present inside library= ' + str(nofEmp))
 
 if __name__ == '__main__':
     graph = load_graph('src/20180402-114759/20180402-114759.pb')

@@ -18,13 +18,22 @@ def upload():
 	with open("data/library/train2/"+ str(empCount) + ".jpeg", "wb") as fh:
 		fh.write(base64.b64decode(base64Data))
 	
-
 	return "Data Received"
-	# return ST1.calculateTrainEmbeddings()
-
+	
 @app.route("/train",methods=['GET'])
 def train():
+	ST1.calculateTrainEmbeddings();
 	return "Repository Embeddings Generated"
+
+@app.route("/verify", methods=['POST'])
+def verify():
+	base64Data = request.form.get('imageData')
+	with open("data/library/test2/" + "test.jpeg", "wb") as fh:
+		fh.write(base64.b64decode(base64Data))
+	ST2.calculateTestEmbeddings();
+	norm = SR.calculateNorm();
+
+	return str(norm)
 
 
 if __name__ == '__main__':
