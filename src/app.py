@@ -4,6 +4,7 @@ import base64
 import siameseTrain as ST1
 import siameseTest as ST2
 import siameseRecognizer as SR
+import json
 
 app = Flask(__name__)
 
@@ -31,9 +32,10 @@ def verify():
 	with open("data/library/test2/" + "test.jpeg", "wb") as fh:
 		fh.write(base64.b64decode(base64Data))
 	ST2.calculateTestEmbeddings();
-	norm = SR.calculateNorm();
+	response = SR.calculateNorm();
+	response = json.dumps(response)
 
-	return str(norm)
+	return str(response)
 
 
 if __name__ == '__main__':

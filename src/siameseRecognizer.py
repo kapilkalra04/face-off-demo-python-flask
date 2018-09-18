@@ -13,12 +13,20 @@ def calculateNorm():
 	faceListTrain = []
 	faceListTest = []
 
+	answer = {}
 	norm = []
 	for i in range(0,len(empEmbeddings)):
 		for j in range(0,len(cstmrEmbeddings)):
-			norm.append(np.linalg.norm(empEmbeddings[i] - cstmrEmbeddings[j]))
+			norm.append(np.float64(np.linalg.norm(empEmbeddings[i] - cstmrEmbeddings[j])))
 
-	return norm
+	for e in norm:
+		if(e<0.9):
+			flag = 'YES'
+			break
+
+	answer['norm'] = norm
+	answer['result'] = flag;
+	return answer
 
 if __name__ == '__main__':
 	empEmbeddings = np.load('src/empEmbeddings.npy')

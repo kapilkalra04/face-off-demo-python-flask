@@ -46,15 +46,16 @@ def calculateTestEmbeddings():
         # save embedding values 
         np.save('src/cstmrEmbeddings',values)
 
+    tf.reset_default_graph();  
+
 if __name__ == '__main__':
+
     graph = load_graph('src/20180402-114759/20180402-114759.pb')
     faceList = []
     for imagePath in glob.glob('data/library/test2/*'):
         # loading cropped,RGBscale,aligned (160,160)sized faces as reqd by FaceNet
         faceList.append(np.expand_dims(cv2.resize(pre.getFaceColor(imagePath),(160,160)), axis=0))
-        # plt.imshow(faceList[-1])
-        # plt.show()
-    
+        
     with tf.Session(graph=graph) as sess:
         images_placeholder = graph.get_tensor_by_name("import/input:0")
         embeddings = graph.get_tensor_by_name("import/embeddings:0")
@@ -70,3 +71,5 @@ if __name__ == '__main__':
 
         # save embedding values 
         np.save('src/cstmrEmbeddings',values)
+
+

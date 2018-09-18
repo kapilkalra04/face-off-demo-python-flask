@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.models import load_model
+import keras
 import pandas as pd
  
 def rotate(face,left_eye_center_x,left_eye_center_y,right_eye_center_x,right_eye_center_y):
@@ -54,6 +55,9 @@ def detectEyeCenters(face):
 	ref_right_eye_center_y = outputVector [0,1]/heightScaling
 	print (ref_left_eye_center_x,ref_left_eye_center_y,ref_right_eye_center_x,ref_right_eye_center_y)
 	
+	keras.backend.clear_session()
+
+
 	# load haar cascade classifiers
 	eye_cascade = cv2.CascadeClassifier('src/haarcascade_eye.xml')
 	eye_cascade_2 = cv2.CascadeClassifier('src/haarcascade_eye_2.xml')
