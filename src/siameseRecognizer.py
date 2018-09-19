@@ -18,7 +18,7 @@ def calculateNorm():
 	for i in range(0,len(empEmbeddings)):
 		for j in range(0,len(cstmrEmbeddings)):
 			norm.append(np.float64(np.linalg.norm(empEmbeddings[i] - cstmrEmbeddings[j])))
-
+	flag = "NO"
 	for e in norm:
 		if(e<0.9):
 			flag = 'YES'
